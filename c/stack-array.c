@@ -1,47 +1,77 @@
 #include <stdio.h>
+#include <stdlib.h>
 
-int main() {
-  int o = 0;
-  int max, top = -1;
-  int stack[50];
-  printf("choose a valid option");
-  printf("\n1.push\n2.pop\n3.display stack\n4.top\n5.exit\n");
+int choice = 0;
+int max, top = -1;
+int stack[50];
 
-  switch (o) {
-  case 1:
-    push();
-    break;
-  case 2:
-   break;
-  case 3:
-    display() break;
-  case 4:
-    exit(1);
-    break;
-  case 0:
-    printf("sorry cant do");
-    break;
-    default printf("why?")
-  }
-}
-
-push() {
+void push() {
   int cat;
   if (top == max - 1) {
-    printf("stack overflow");
+    printf("stack overflow\n");
   } else {
-    printf("enter the element to be pushed") top++;
-    scanf("%d", cat);
-    top = man;
+    printf("enter the element to be pushed\n");
+    scanf("%d", &cat);
+    stack[++top] = cat;
   }
 }
-display() {
-  if (top == -1) {
-    printf("stack is wmpty");}
 
-    else {
-      for (int i = 0;i<= max;i--) {
-        printf(%d\n, i); 
-      }
+void display() {
+  if (top == -1) {
+    printf("stack is empty\n");
+  } else {
+    for (int i = top; i >= 0; i--) {
+      printf("%d\n", stack[i]);
     }
   }
+}
+
+void pop() {
+  if (top == -1) {
+    printf("stack underflow\n");
+  } else {
+    printf("the element %d was deleted\n", stack[top]);
+    top--;
+  }
+}
+
+void showTop() {
+  if (top == -1) {
+    printf("stack is empty\n");
+  } else {
+    printf("the top element is %d\n", stack[top]);
+  }
+}
+
+int main() {
+  printf("enter max\n");
+  scanf("%d", &max);
+
+  while (1) {
+    printf("       choose a valid option\n");
+    printf("1.push\n2.pop\n3.display stack\n4.top\n5.exit\n");
+    scanf("%d", &choice);
+
+    switch (choice) {
+    case 1:
+      push();
+      break;
+    case 2:
+      pop();
+      break;
+    case 3:
+      display();
+      break;
+    case 4:
+      showTop();
+      break;
+    case 5:
+      exit(0);
+      break;
+    default:
+      printf("Invalid choice\n");
+    }
+  }
+
+  return 0;
+}
